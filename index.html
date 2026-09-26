@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#16080d">
+  <meta name="description" content="七相心镜：七种阴影倾向与七种平衡力量的原创自我探索测试。">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316080d'/%3E%3Cpath d='M32 9l6 16 17-5-10 14 14 10-17 1-1 17-9-15-10 15-1-17-17-1 14-10L8 20l17 5z' fill='none' stroke='%23d8b777' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <title>七相心镜｜阴影与美德测试</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!--
+  THESIS: 把七种倾向做成一面可转向建设性力量的镜子，拒绝把测试包装成固定人格判决。
+  OWN-WORLD: 深酒红手工纸构成夜间镜室，自托管小薇体、古金细线和七角轨迹贯穿页面与触控表面。
+  STORY: 访客选择单轨或双轨测试，逐题作答，看见最强阴影以及可练习的平衡力量，然后分享或重测。
+  FIRST VIEWPORT: 品牌在顶部，七角心镜占据视觉中心，两枚模式按钮在拇指可及区，无需滚动即可开始。
+  FORM: 用户钉选的暗红金色手机测试界面；pinned-sevenfold-20260925。
+  FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+  -->
+  <main class="app-shell">
+    <header class="topbar" aria-label="网站标题">
+      <button class="brand" id="home-button" type="button" aria-label="返回七相心镜首页">
+        <span class="brand-mark" aria-hidden="true">VII</span>
+        <span>七相心镜</span>
+      </button>
+      <button class="icon-button" id="top-share" type="button" aria-label="分享测试">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V3m0 0L7.5 7.5M12 3l4.5 4.5M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>
+      </button>
+    </header>
+
+    <section id="start-screen" class="screen start-screen" aria-labelledby="start-title">
+      <div class="intro-copy">
+        <h1 id="start-title">七相心镜</h1>
+        <p>看见七种阴影如何出现，也看见它们能够转向的力量。</p>
+      </div>
+
+      <div class="sigil" aria-label="七种阴影倾向：傲慢、贪婪、迷恋、嫉妒、暴怒、纵欲、懒惰">
+        <svg viewBox="0 0 320 320" role="img" aria-hidden="true">
+          <circle cx="160" cy="160" r="101" class="sigil-ring"/>
+          <circle cx="160" cy="160" r="69" class="sigil-ring inner"/>
+          <path class="sigil-lines" d="M160 40L254 85 277 187 212 268 108 268 43 187 66 85Z"/>
+          <path class="sigil-lines faint" d="M160 40L277 187 108 268 66 85 254 85 212 268 43 187Z"/>
+          <circle cx="160" cy="160" r="37" class="sigil-core"/>
+          <text x="160" y="172" text-anchor="middle" class="sigil-seven">7</text>
+        </svg>
+        <span class="sigil-label label-1">傲慢<small>PRIDE</small></span>
+        <span class="sigil-label label-2">贪婪<small>GREED</small></span>
+        <span class="sigil-label label-3">迷恋<small>DESIRE</small></span>
+        <span class="sigil-label label-4">嫉妒<small>ENVY</small></span>
+        <span class="sigil-label label-5">暴怒<small>WRATH</small></span>
+        <span class="sigil-label label-6">纵欲<small>EXCESS</small></span>
+        <span class="sigil-label label-7">懒惰<small>SLOTH</small></span>
+      </div>
+
+      <div id="resume-panel" class="resume-panel" hidden>
+        <p>上次答题还没有完成</p>
+        <button id="resume-button" type="button">继续上次测试</button>
+      </div>
+
+      <div class="mode-actions" aria-label="选择测试模式">
+        <button class="mode-button primary" type="button" data-mode="shadow">
+          <span>开始测试 · 阴影版</span>
+          <small>28 题 · 七种倾向</small>
+        </button>
+        <button class="mode-button secondary" type="button" data-mode="balance">
+          <span>开始测试 · 平衡版</span>
+          <small>35 题 · 阴影 × 美德双轨</small>
+        </button>
+      </div>
+
+      <p class="privacy-note">无需登录 · 进度只保存在当前设备</p>
+      <button class="text-action" id="start-share" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12h8M12 8v8M6 3h12a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-5l-4 3v-3H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3Z"/></svg>
+        分享测试
+      </button>
+    </section>
+
+    <section id="test-screen" class="screen test-screen" aria-labelledby="question-text" hidden>
+      <div class="test-heading">
+        <button id="leave-test" class="back-button" type="button" aria-label="暂存并返回首页">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <div>
+          <p id="mode-name">阴影版</p>
+          <p id="question-progress" aria-live="polite">1 / 28</p>
+        </div>
+      </div>
+      <div class="progress-track" role="progressbar" aria-label="答题进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <span id="progress-fill"></span>
+      </div>
+
+      <article class="question-stage">
+        <h2 id="question-text" tabindex="-1"></h2>
+        <p id="dimension-name" class="dimension-caption">本题观察：傲慢</p>
+        <p id="question-hint">请选择最接近你通常状态的答案。</p>
+        <div id="answer-list" class="answer-list" role="group" aria-label="回答选项"></div>
+      </article>
+
+      <footer class="test-footer">
+        <button id="previous-question" type="button">上一题</button>
+        <span>凭第一反应作答</span>
+      </footer>
+    </section>
+
+    <section id="result-screen" class="screen result-screen" aria-labelledby="result-title" hidden>
+      <header class="result-heading">
+        <h1 id="result-title"></h1>
+        <p id="result-lead"></p>
+      </header>
+
+      <div class="result-radar" id="result-radar" aria-label="七项测试分数图"></div>
+
+      <section class="result-section" aria-labelledby="reading-title">
+        <h2 id="reading-title">你的核心读数</h2>
+        <div id="core-reading"></div>
+      </section>
+
+      <section class="result-section" aria-labelledby="scores-title">
+        <h2 id="scores-title">七项分布</h2>
+        <div id="score-list" class="score-list"></div>
+      </section>
+
+      <section class="result-section practice-section" aria-labelledby="practice-title">
+        <h2 id="practice-title">此刻可以练习的方向</h2>
+        <p id="practice-copy"></p>
+      </section>
+
+      <p class="disclaimer">本测试用于娱乐与自我观察，不构成心理诊断、医疗或专业建议。</p>
+
+      <div class="result-actions">
+        <button id="share-result" class="mode-button primary" type="button">分享我的结果</button>
+        <button id="restart-test" class="mode-button secondary" type="button">重新测试</button>
+      </div>
+    </section>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  </main>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
